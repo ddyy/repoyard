@@ -1,7 +1,7 @@
 # repoyard
 
 ```
-myapp-project/            ← workspace, untracked
+myapp-project/            ← workspace, outside the repo's git
 ├── CLAUDE.md             ← personal agent instructions
 ├── notes/                ← plans, research, session notes
 ├── scratch/              ← agent exhaust, one-off scripts
