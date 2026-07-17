@@ -40,21 +40,12 @@ Layout created (for a project named "foo"):
 
 const tmplAgentMd = (repo) => `# Workspace for ${repo}
 
-This directory is an untracked workspace wrapping the git repo \`${repo}/\`.
-Nothing outside \`${repo}/\` is under version control or ever committed.
+- \`${repo}/\` — the git repo; the only thing that ships
+- \`notes/\` — durable personal notes
+- \`scratch/\` — disposable: agent exhaust, one-off experiments
 
-Layout:
-
-- \`${repo}/\`   — the git repository; the only thing that ships
-- \`notes/\`  — durable personal notes: plans, research, session notes
-- \`scratch/\` — disposable: agent exhaust, one-off scripts, experiments
-
-Rules for agents working here:
-
-- Never reference workspace files (\`../notes\`, \`../scratch\`, this file)
-  from code or docs committed inside \`${repo}/\`.
-- Anything durable produced in \`scratch/\` graduates to \`notes/\` or to the
-  repo's own docs.
+Never reference workspace files (\`../notes\`, \`../scratch\`, this file)
+from code or docs committed inside \`${repo}/\`.
 
 ## Personal instructions
 
