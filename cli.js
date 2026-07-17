@@ -210,7 +210,7 @@ async function create(project) {
 
   await chooseAgentFile();
   const wsGit = await confirm(
-    "git init the workspace itself, for private history of notes/?",
+    "git init the workspace itself, giving notes/ a private history?",
     false,
   );
 
@@ -257,7 +257,7 @@ async function adopt() {
 
   await chooseAgentFile();
   const wsGit = await confirm(
-    "git init the workspace itself, for private history of notes/?",
+    "git init the workspace itself, giving notes/ a private history?",
     false,
   );
 
