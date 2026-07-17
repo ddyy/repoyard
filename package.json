@@ -1,0 +1,34 @@
+{
+  "name": "repoyard",
+  "version": "1.0.0",
+  "description": "Scaffold an untracked workspace directory around a git repo — the workspace-outside-git convention for LLM-assisted projects",
+  "type": "module",
+  "bin": {
+    "repoyard": "cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "scaffold",
+    "workspace",
+    "git",
+    "llm",
+    "agent",
+    "claude"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddyy/repoyard.git"
+  },
+  "homepage": "https://github.com/ddyy/repoyard#readme",
+  "bugs": "https://github.com/ddyy/repoyard/issues",
+  "author": "Daniel Yang <dev@daniel-yang.com>",
+  "license": "MIT"
+}
