@@ -299,8 +299,16 @@ function doctor() {
     ["scratch/ exists", fs.existsSync(path.join(ws, "scratch"))],
   ];
 
-  // The workspace must not be committable: either outside version control
-  // entirely, or its own repo with the project repo and scratch/ ignored.
+  const gi = fs.existsSync(path.join(ws, ".gitignore"))
+    ? fs.readFileSync(path.join(ws, ".gitignore"), "utf8")
+    : "";
+  checks.push([
+    `workspace .gitignore covers /${repoName}/ and scratch/`,
+    gi.includes(`/${repoName}/`) && gi.includes("scratch/"),
+  ]);
+
+  // The workspace must not be committable into anything above it: either
+  // outside version control entirely, or a git repo of its own.
   let topLevel = null;
   try {
     topLevel = git(ws, "rev-parse", "--show-toplevel").trim();
@@ -310,13 +318,7 @@ function doctor() {
   if (topLevel === null) {
     checks.push(["workspace is not inside any git repo", true]);
   } else if (topLevel === fs.realpathSync(ws)) {
-    const gi = fs.existsSync(path.join(ws, ".gitignore"))
-      ? fs.readFileSync(path.join(ws, ".gitignore"), "utf8")
-      : "";
-    checks.push([
-      `workspace has its own repo and .gitignore covers /${repoName}/ and scratch/`,
-      gi.includes(`/${repoName}/`) && gi.includes("scratch/"),
-    ]);
+    checks.push(["workspace git repo is its own, not an enclosing one", true]);
   } else {
     checks.push([
       `workspace is not inside an enclosing git repo (found ${topLevel})`,

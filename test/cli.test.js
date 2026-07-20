@@ -215,10 +215,12 @@ test("doctor flags a hand-broken workspace", () => {
   const ws = path.join(dir, "demo-workspace");
   fs.rmSync(path.join(ws, "notes"), { recursive: true });
   fs.rmSync(path.join(ws, "CLAUDE.md"));
+  fs.rmSync(path.join(ws, ".gitignore"));
   const r = run(["doctor"], ws);
   assert.equal(r.status, 1);
   assert.match(r.stdout, /FAIL +notes\/ exists/);
   assert.match(r.stdout, /FAIL +agent instructions file exists/);
+  assert.match(r.stdout, /FAIL +workspace \.gitignore covers/);
   assert.match(r.stdout, /ok +scratch\/ exists/);
 });
 

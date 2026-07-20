@@ -90,8 +90,12 @@ The tool scaffolds none of these; the location just works.
 - A second repo: some projects are several repos (`myapp`, `myapp-landing`).
   Extra repos sit as siblings inside the workspace, which stays named after
   the primary one.
-- `.env` files and other secrets your tooling reads: unleakable for the
-  same reason the notes are.
+- `.env` files and other secrets your tooling reads: the project repo
+  cannot commit them, same as the notes.
+
+The generated workspace `.gitignore` covers only the repo dir and
+`scratch/`. If you gave the workspace its own git repo, extend it by hand
+so worktrees, extra repos, and secrets stay out of the private history too.
 
 ## Out of scope, permanently
 
