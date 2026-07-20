@@ -1,7 +1,7 @@
 # repoyard
 
 ```
-myapp-project/            ← workspace, outside the repo's git
+myapp-workspace/          ← workspace, outside the repo's git
 ├── CLAUDE.md             ← personal agent instructions
 ├── notes/                ← plans, research, session notes
 ├── scratch/              ← agent exhaust, one-off scripts
@@ -69,12 +69,12 @@ tool that reads ancestor directories. You could do this by hand; the
 point is that you, your agents, and your other machines all do it the same
 way.
 
-## Why the `-project` suffix goes on the outside
+## Why the `-workspace` suffix goes on the outside
 
 The repo keeps the clean name; the wrapper takes the suffix.
 
 - Terminal tabs show the innermost folder, so your tabs say `myapp`, not
-  `myapp-project`, and no two projects' tabs collide on a generic name.
+  `myapp-workspace`, and no two projects' tabs collide on a generic name.
 - Folder-derived tool names (docker compose project names, `npm init`
   defaults) come from the repo dir and stay clean.
 - The repo dir matches the GitHub repo name, so `git clone` inside a fresh

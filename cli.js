@@ -29,7 +29,7 @@ On a terminal, anything you leave out is asked interactively (Enter accepts
 the default). Flags, --no-input, or piped stdin skip the questions.
 
 Layout created (for a project named "foo"):
-  foo-project/          workspace, untracked
+  foo-workspace/        workspace, outside the repo's git
   ├── CLAUDE.md         agent instructions for the workspace
   ├── notes/            durable personal notes
   ├── scratch/          disposable agent exhaust
@@ -190,12 +190,12 @@ function scaffoldWorkspace(ws, repo, wsGit) {
 
 async function create(project) {
   if (!project)
-    project = await ask("project name (workspace becomes <name>-project):");
+    project = await ask("project name (workspace becomes <name>-workspace):");
   if (!project) fail("usage: repoyard create <project>");
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(project))
     fail(`invalid project name: ${project}`);
 
-  const ws = path.resolve(`${project}-project`);
+  const ws = path.resolve(`${project}-workspace`);
   const repoDir = path.join(ws, project);
   if (fs.existsSync(ws)) fail(`${ws} already exists`);
 
@@ -212,7 +212,7 @@ async function create(project) {
     git(repoDir, "init", "-q");
   });
 
-  console.log(`cd ${project}-project/${project}`);
+  console.log(`cd ${project}-workspace/${project}`);
 }
 
 async function adopt() {
@@ -242,7 +242,7 @@ async function adopt() {
     fail("repo has uncommitted changes; commit or stash first — adopt moves the repo directory");
   }
 
-  const ws = path.join(path.dirname(repoPath), `${repoName}-project`);
+  const ws = path.join(path.dirname(repoPath), `${repoName}-workspace`);
   if (fs.existsSync(ws)) fail(`${ws} already exists`);
   const newRepoPath = path.join(ws, repoName);
 
@@ -265,7 +265,7 @@ async function adopt() {
     fail(`adopt failed, rolled back (repo is back where it was): ${err.message}`);
   }
 
-  console.log(`cd ../${repoName}-project/${repoName}`);
+  console.log(`cd ../${repoName}-workspace/${repoName}`);
 }
 
 function doctor() {
@@ -276,13 +276,13 @@ function doctor() {
     repoName = path.basename(cwd);
   } else {
     ws = cwd;
-    repoName = path.basename(ws).replace(/-project$/, "");
+    repoName = path.basename(ws).replace(/-workspace$/, "");
   }
 
   const checks = [
     [
-      `workspace dir is named ${repoName}-project`,
-      path.basename(ws) === `${repoName}-project`,
+      `workspace dir is named ${repoName}-workspace`,
+      path.basename(ws) === `${repoName}-workspace`,
     ],
     [
       `repo dir ${repoName}/ exists in workspace and is a git repo`,
