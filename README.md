@@ -55,8 +55,9 @@ Run it in a directory that isn't a repo yet and it offers to `git init`
 first, then adopt (interactive only; `--no-input` keeps the refusal, and
 running inside a repo below its root still refuses outright).
 During scaffolding it offers to `git init` the workspace itself, which gives
-`notes/` a private history with the repo dir and `scratch/` ignored. Default
-is no.
+`notes/` a private history. Default is no. Either way the workspace gets a
+`.gitignore` covering the repo dir and `scratch/`, so a workspace repo
+created now or months later starts out safe.
 
 `doctor` prints what deviates from the convention and exits non-zero. It
 never fixes anything.

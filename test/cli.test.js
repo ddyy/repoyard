@@ -56,6 +56,11 @@ test("create scaffolds the full tree with a git-init'd repo", () => {
   assert.ok(fs.existsSync(path.join(ws, "notes", "README.md")));
   assert.ok(fs.existsSync(path.join(ws, "scratch", "README.md")));
   assert.ok(!fs.existsSync(path.join(ws, ".git")), "workspace not git-init'd by default");
+  assert.equal(
+    fs.readFileSync(path.join(ws, ".gitignore"), "utf8"),
+    "/demo/\nscratch/\n",
+    "workspace .gitignore always written",
+  );
   assert.ok(r.stdout.trim().endsWith("cd demo-workspace/demo"));
 });
 

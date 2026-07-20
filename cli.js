@@ -178,11 +178,13 @@ function scaffoldWorkspace(ws, repo, wsGit) {
     fs.mkdirSync(path.join(ws, "scratch"));
     fs.writeFileSync(path.join(ws, "scratch", "README.md"), tmplScratchReadme());
   });
+  op(`write ${path.join(ws, ".gitignore")} (repo dir and scratch/ ignored)`, () =>
+    fs.writeFileSync(path.join(ws, ".gitignore"), tmplWorkspaceGitignore(repo)),
+  );
   if (wsGit) {
-    op(`git init workspace ${ws} (repo dir and scratch/ ignored)`, () => {
-      git(ws, "init", "-q");
-      fs.writeFileSync(path.join(ws, ".gitignore"), tmplWorkspaceGitignore(repo));
-    });
+    op(`git init workspace ${ws} (private history for notes/)`, () =>
+      git(ws, "init", "-q"),
+    );
   }
 }
 
