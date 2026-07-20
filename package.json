@@ -1,6 +1,6 @@
 {
   "name": "repoyard",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Scaffold an untracked workspace directory around a git repo — the workspace-outside-git convention for LLM-assisted projects",
   "type": "module",
   "bin": {
