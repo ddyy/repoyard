@@ -79,12 +79,22 @@ The repo keeps the clean name; the wrapper takes the suffix.
   defaults) come from the repo dir and stay clean.
 - The repo dir matches the GitHub repo name, so `git clone` inside a fresh
   workspace reproduces the layout with no target argument.
-- The workspace name still sorts next to the repo name in any file listing.
+
+## What else lives well in a workspace
+
+The tool scaffolds none of these; the location just works.
+
+- Worktrees: `git worktree add ../myapp-wip` from inside the repo puts the
+  checkout next to `notes/` instead of littering the parent directory.
+- A second repo: some projects are several repos (`myapp`, `myapp-landing`).
+  Extra repos sit as siblings inside the workspace, which stays named after
+  the primary one.
+- `.env` files and other secrets your tooling reads: unleakable for the
+  same reason the notes are.
 
 ## Out of scope, permanently
 
-- Worktree management. `git worktree add ../myapp-wip` already works
-  great inside a workspace; that's all you need.
+- Worktree management; the layout already handles worktrees without help.
 - Language or framework templates, `.env` handling, editor config.
 - Windows: probably works, untested.
 - Auto-update, telemetry, config files, plugins.
