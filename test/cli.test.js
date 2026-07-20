@@ -206,7 +206,9 @@ test("doctor passes on a freshly created workspace (from repo or workspace)", ()
   run(["create", "demo", "--no-input"], dir);
   const ws = path.join(dir, "demo-workspace");
   assert.equal(run(["doctor"], path.join(ws, "demo")).status, 0);
-  assert.equal(run(["doctor"], ws).status, 0);
+  const r2 = run(["doctor"], ws);
+  assert.equal(r2.status, 0);
+  assert.equal(r2.stderr, "", "doctor must not leak git noise to stderr");
 });
 
 test("doctor flags a hand-broken workspace", () => {

@@ -311,7 +311,11 @@ function doctor() {
   // outside version control entirely, or a git repo of its own.
   let topLevel = null;
   try {
-    topLevel = git(ws, "rev-parse", "--show-toplevel").trim();
+    topLevel = execFileSync("git", ["rev-parse", "--show-toplevel"], {
+      cwd: ws,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
   } catch {
     /* not inside any git repo — good */
   }
