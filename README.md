@@ -104,7 +104,8 @@ so worktrees, extra repos, and secrets stay out of the private history too.
 - Windows: probably works, untested.
 - Auto-update, telemetry, config files, plugins.
 
-Blog post with the full rationale: coming soon.
+Blog post with the full rationale:
+[daniel-yang.com/writing/keeping-agent-exhaust-out-of-your-repo](https://daniel-yang.com/writing/keeping-agent-exhaust-out-of-your-repo/)
 
 ## License
 
