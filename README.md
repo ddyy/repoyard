@@ -6,11 +6,18 @@ myapp-workspace/          ← workspace, outside the repo's git
 ├── notes/                ← plans, research, session notes
 ├── scratch/              ← agent exhaust, one-off scripts
 └── myapp/                ← the git repo
+    └── CLAUDE.md         ← optional, shared project instructions
 ```
 
 A tiny CLI that scaffolds one convention: an untracked parent folder holding
 your git repo plus the personal and agent files that must never be
 committable.
+
+The outer `CLAUDE.md` is for personal preferences and workspace-specific
+rules. It doesn't replace an optional committed `CLAUDE.md` inside the repo,
+where architecture, conventions, and gotchas can travel with the code and be
+shared with the team. Claude Code reads both. Repoyard creates only the outer
+file; the inner one belongs to the project and its team.
 
 ## Why: you can't commit what git can't see
 
